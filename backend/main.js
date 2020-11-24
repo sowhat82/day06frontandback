@@ -5,9 +5,9 @@ const cors = require('cors')
 
 const cart = [
     {id: 'abc', item: 'apple' , quantity: 10},
-    {id: 'def', item: 'orange' , quantity: 10},
-    {id: 'ghi', item: 'pear' , quantity: 10},
-    {id: 'jkl', item: 'grapes' , quantity: 10},
+    {id: 'def', item: 'orange' , quantity: 20},
+    {id: 'ghi', item: 'pear' , quantity: 30},
+    {id: 'jkl', item: 'grapes' , quantity: 40},
 
 ]
 // configure environment variables
@@ -18,6 +18,7 @@ const app = express()
 
 // to prevent the CORS error
 app.use (cors())
+app.use (express.json())
 
 //create resources
 
@@ -52,6 +53,16 @@ app.get('/cart/:id',  (req, resp) => {
     resp.json(search (req.params.id, cart))
 })
 
+app.put('/cart/:id', (req, resp)=>{
+    const id = req.params['id']
+    const payload = req.body
+
+    resp.status(200)
+    resp.type('application/json')
+    resp.json({})
+
+
+})
 
 
 // start the app
